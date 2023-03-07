@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import redisClient from '../utils/redis';
 
 module.exports = class AuthController {
-  static async getConnect(request, response) {
+  static async getConnect (request, response) {
     const { user } = request;
     const token = uuidv4();
 
@@ -11,10 +11,10 @@ module.exports = class AuthController {
     response.status(200).json({ token });
   }
 
-  static async getDisconnect(request, response) {
+  static async getDisconnect (request, response) {
     const token = request.headers['x-token'];
 
     await redisClient.del(`auth_${token}`);
     response.status(204).send();
   }
-}
+};

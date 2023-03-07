@@ -56,5 +56,5 @@ export const getUserFromXToken = async (req) => {
 
 export default {
   getUserFromAuthorization: async (req) => getUserFromAuthorization(req),
-  getUserFromXToken: async (req) => getUserFromXToken(req),
+  getUserFromXToken: async (req) => getUserFromXToken(req)
 };

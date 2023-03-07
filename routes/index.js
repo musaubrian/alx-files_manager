@@ -1,5 +1,5 @@
-import { Router } from "express";
-import AppController from "../controllers/AppController";
+import { Router } from 'express';
+import AppController from '../controllers/AppController';
 import UsersController from '../controllers/UsersController';
 import AuthController from '../controllers/AuthController';
 import FilesController from '../controllers/FilesController';
@@ -8,8 +8,8 @@ import { APIError, errorResponse } from '../additionalUtils/error';
 
 const router = Router();
 
-router.get("/status", AppController.getStatus);
-router.get("/stats", AppController.getStats);
+router.get('/status', AppController.getStatus);
+router.get('/stats', AppController.getStats);
 
 router.get('/connect', basicAuthenticate, AuthController.getConnect);
 router.get('/disconnect', xTokenAuthenticate, AuthController.getDisconnect);
