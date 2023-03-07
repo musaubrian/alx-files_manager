@@ -1,10 +1,10 @@
-import { Queue } from "bull/lib/queue";
-import imageThumbNail from "image-thumbnail";
-import dbClient from "./utils/db";
-import { ObjectID } from "mongodb";
-import { promises as fs } from "fs";
+import { Queue } from 'bull/lib/queue';
+import imageThumbNail from 'image-thumbnail';
+import dbClient from './utils/db';
+import { ObjectID } from 'mongodb';
+import { promises as fs } from 'fs';
 
-const fileQueue = new Queue("fileQueue", "redis://127.0.0.1:6379");
+const fileQueue = new Queue('fileQueue', 'redis://127.0.0.1:6379');
 
 /*
  * Creates a new thumbnail from the parsed paramaters
@@ -22,14 +22,14 @@ fileQueue.process(async (job, done) => {
   const { fileId } = job.data;
   const { userId } = job.data;
 
-  if (!fileId) done(new Error("Missing fileId"));
-  if (!userId) done(new Error("Missing userId"));
+  if (!fileId) done(new Error('Missing fileId'));
+  if (!userId) done(new Error('Missing userId'));
 
-  const files = dbClient.db.collection("files");
+  const files = dbClient.db.collection('files');
   const idObject = new ObjectID(fileId);
 
   files.findOne({ _id: idObject }, async (error, file) => {
-    if (!file) done(new Error("File not found"));
+    if (!file) done(new Error('File not found'));
     else {
       const fileName = file.localPath;
       const thumbnail500 = await thumbnail(500, fileName);
